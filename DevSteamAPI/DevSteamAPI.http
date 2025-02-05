@@ -1,0 +1,6 @@
+@DevSteamAPI_HostAddress = http://localhost:5157
+
+GET {{DevSteamAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
