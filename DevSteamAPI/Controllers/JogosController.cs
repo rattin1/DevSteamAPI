@@ -106,5 +106,22 @@ namespace DevSteamAPI.Controllers
         {
             return _context.Jogos.Any(e => e.JogoId == id);
         }
+        // Adicione este método ao JogosController
+
+        // GET: api/Jogos/ByName
+        [HttpGet("ByName")]
+        public async Task<ActionResult<IEnumerable<Jogo>>> GetJogosByName(string nome)
+        {
+            var jogos = await _context.Jogos
+                .Where(j => j.JogoNome.Contains(nome, StringComparison.OrdinalIgnoreCase))
+                .ToListAsync();
+
+            if (jogos == null || !jogos.Any())
+            {
+                return NotFound();
+            }
+
+            return jogos;
+        }
     }
 }
